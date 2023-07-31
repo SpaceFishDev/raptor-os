@@ -1,0 +1,184 @@
+Open Watcom Linker Version 2.0 beta Jul 11 2023 02:28:07 (32-bit)
+Copyright (c) 2002-2023 The Open Watcom Contributors. All Rights Reserved.
+Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
+Created on:       23/07/31 20:54:22
+Warning! W1027: file build/kernel/main.o(/home/liamgatter/dev/C/raptor-os/src/kernel/main.c): redefinition of _panic_has_happened ignored
+Warning! W1027: file build/kernel/main.o(/home/liamgatter/dev/C/raptor-os/src/kernel/main.c): redefinition of _safe_point ignored
+Warning! W1027: file build/kernel/main.o(/home/liamgatter/dev/C/raptor-os/src/kernel/main.c): redefinition of _free_heap_blocks ignored
+Warning! W1027: file build/kernel/main.o(/home/liamgatter/dev/C/raptor-os/src/kernel/main.c): redefinition of _heap_blocks ignored
+Warning! W1027: file build/kernel/main.o(/home/liamgatter/dev/C/raptor-os/src/kernel/main.c): redefinition of _heap_addr ignored
+Executable Image: build/kernel/kernel.bin
+creating a RAW Binary Image executable
+
+
+                        +------------+
+                        |   Groups   |
+                        +------------+
+
+Group                           Address              Size
+=====                           =======              ====
+
+DGROUP                          000013ea             000020a6
+
+
+
+                        +--------------+
+                        |   Segments   |
+                        +--------------+
+
+Segment                Class          Group          Address         Size
+=======                =====          =====          =======         ====
+
+_ENTRY                 CODE           AUTO           00000000        00000100
+_TEXT                  CODE           AUTO           00000100        000012e9
+CONST                  DATA           DGROUP         000013ea        0000005d
+CONST2                 DATA           DGROUP         00001448        00000011
+_DATA                  DATA           DGROUP         0000145a        00001015
+_EXTENDED,             DATA           AUTO           0000246f        00001000
+_BSS                   BSS            DGROUP         00003470        00000020
+
+
+                        +----------------+
+                        |   Memory Map   |
+                        +----------------+
+
+* = unreferenced symbol
++ = symbol only referenced locally
+
+Address        Symbol
+=======        ======
+
+Module: build/kernel/fs.o(/home/liamgatter/dev/C/raptor-os/src/kernel/fs.c)
+00000100+      get_hpc_
+00000115+      write_bytes_to_disk_
+000001d3+      read_bytes_from_disk_
+Module: build/kernel/printf.o(/home/liamgatter/dev/C/raptor-os/src/kernel/printf.c)
+0000026d       strlen_
+000002af+      _putc_
+000002d1+      _puts_
+00000305+      puts_f_
+0000033c       _printf
+000005b5+      _fprintf
+00000843+      printf_number_
+00001448+      _g_HexChars
+Module: build/kernel/malloc.o(/home/liamgatter/dev/C/raptor-os/src/kernel/malloc.c)
+00000ab4       mkstr_
+00000b24       init_heap_
+00000baa+      malloc_
+00000e55+      free_
+00000f94+      print_blocks_
+00003470+      _num_block
+00003474+      _num_free
+00003478       _heap_addr
+0000347c       _free_heap_blocks
+00003480       _heap_blocks
+Module: build/kernel/interrupts_c.o(/home/liamgatter/dev/C/raptor-os/src/kernel/interrupts.c)
+00001032+      _set_safe_point
+0000104d+      panic_
+000010b0       div0_handler_
+0000245a       _panic_has_happened
+0000245b       _safe_point
+Module: build/kernel/sys.o(/home/liamgatter/dev/C/raptor-os/src/kernel/sys.c)
+000010cb+      cli_
+000010e1+      sti_
+000010f7+      hlt_
+00001110+      reboot_
+0000113f+      get_register_
+Module: build/kernel/interrupts.o(src/kernel/interrupts.asm)
+0000119d*      _store_idt_addr
+000011af       _set_ivt
+Module: build/kernel/devices.o(/home/liamgatter/dev/C/raptor-os/src/kernel/devices.c)
+000011da       send_byte_
+00001263       send_bytes_
+Module: build/kernel/io_c.o(/home/liamgatter/dev/C/raptor-os/src/kernel/io/io.c)
+000012fe+      puts_
+00001340+      putsf_
+Module: build/kernel/main_asm.o(src/kernel/main.asm)
+00000000       entry
+0000000b       _set_safepoint
+00000017       _jump
+00000023       _get_heap
+0000003d       _div64
+0000006b*      _reset_disk
+00000079       _write_sect
+000000b0       _read_sect
+000000e7       _outb
+000000f5*      _inb
+Module: build/kernel/main.o(/home/liamgatter/dev/C/raptor-os/src/kernel/main.c)
+00001388       _main_
+Module: build/kernel/io.o(src/kernel/io/io.asm)
+000013ca       _video_mode
+000013d8       _putc
+
+
+                        +---------------------+
+                        |   Module Segments   |
+                        +---------------------+
+
+! = 32-bit segment
+c = initialized communal data
+
+Module          Segment               Class           Address         Size
+======          =======               =====           =======         ====
+
+/home/liamgatter/dev/C/raptor-os/src/kernel/fs.c
+                _TEXT                 CODE           00000100         0000016d
+                CONST                 DATA           000013ea         00000004
+                CONST2                DATA           00001448         00000000
+                _DATA                 DATA           0000145a         00001000
+/home/liamgatter/dev/C/raptor-os/src/kernel/printf.c
+                _TEXT                 CODE           0000026d         00000847
+                CONST                 DATA           000013ee         00000000
+                CONST2                DATA           00001448         00000011
+                _DATA                 DATA           0000245a         00000000
+/home/liamgatter/dev/C/raptor-os/src/kernel/malloc.c
+                _TEXT                 CODE           00000ab4         0000057e
+                CONST                 DATA           000013ee         00000031
+                CONST2                DATA           0000145a         00000000
+                _DATA                 DATA           0000245a         00000000
+                _BSS                  BSS            00003470         00000014
+/home/liamgatter/dev/C/raptor-os/src/kernel/interrupts.c
+                _TEXT                 CODE           00001032         00000099
+                CONST                 DATA           00001420         00000013
+                CONST2                DATA           0000145a         00000000
+                _DATA                 DATA           0000245a         00000012
+/home/liamgatter/dev/C/raptor-os/src/kernel/sys.c
+                _TEXT                 CODE           000010cb         000000d2
+                CONST                 DATA           00001434         00000000
+                CONST2                DATA           0000145a         00000000
+                _DATA                 DATA           0000246c         00000000
+src/kernel/interrupts.asm
+                _TEXT                 CODE           0000119d         0000003d
+/home/liamgatter/dev/C/raptor-os/src/kernel/devices.c
+                _TEXT                 CODE           000011da         00000124
+                CONST                 DATA           00001434         00000000
+                CONST2                DATA           0000145a         00000000
+                _DATA                 DATA           0000246c         00000000
+/home/liamgatter/dev/C/raptor-os/src/kernel/io/io.c
+                _TEXT                 CODE           000012fe         0000008a
+                CONST                 DATA           00001434         00000000
+                CONST2                DATA           0000145a         00000000
+                _DATA                 DATA           0000246c         00000000
+src/kernel/main.asm
+                _ENTRY                CODE           00000000         00000100
+src/kernel/extend.asm
+                _EXTENDED,            DATA           0000246f         00001000
+/home/liamgatter/dev/C/raptor-os/src/kernel/main.c
+                _TEXT                 CODE           00001388         00000042
+                CONST                 DATA           00001434         00000013
+                CONST2                DATA           0000145a         00000000
+                _DATA                 DATA           0000246c         00000003
+                _BSS                  BSS            00003484         0000000c
+src/kernel/io/io.asm
+                _TEXT                 CODE           000013ca         0000001f
+Warning! W1014: stack segment not found
+
+
+                        +-----------------------+
+                        |   Linker Statistics   |
+                        +-----------------------+
+
+Stack size:  000f4240 (1000000.)
+Memory size:  3490 (13456.)
+Entry point address: 00000000
+Link time: 00:00.00

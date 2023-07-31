@@ -13,6 +13,4 @@ void _cdecl main_(char boot_disk)
 	set_ivt(0, div0_handler);
 	video_mode(0x13);
 	init_heap();
-	printf("Hello, World!\n");
-	char far* str = mkstr("Hi!");
 }

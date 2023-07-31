@@ -24,16 +24,16 @@ void init_heap()
 	num_block = 0;
 	heap_blocks = (block_t far*)get_heap();
 	free_heap_blocks =
-		(free_block_t far*)((int)get_heap() + 256 * sizeof(block_t));
-	heap_addr = (void far*)((int)get_heap() + sizeof(block_t) * 256 +
-							sizeof(free_block_t) * 256);
+		(free_block_t far*)((int)get_heap() + 512 * sizeof(block_t));
+	heap_addr = (void far*)((int)get_heap() + sizeof(block_t) * 512 +
+							sizeof(free_block_t) * 512);
 	free_heap_blocks[0].ptr = heap_addr;
 	free_heap_blocks[0].size = 60 * 1024;
 }
 
 void far* malloc(size_t size)
 {
-	if (num_block > 256)
+	if (num_block > 512)
 	{
 		return 0;
 	}

@@ -29,7 +29,9 @@ _jump:
 	push bp
 	mov bp,sp
 	mov bx, [bp+4]
-	jmp bx
+    mov ax, 0x7e00
+    mov es, ax
+	jmp bx 
 
 heap_addr:
 	dw 0
@@ -176,3 +178,37 @@ _inb:
     mov sp, bp
     pop bp
 ret
+global _init_pit
+_init_pit:
+    push bp
+    mov bp, sp
+    out 0x43, al                
+    mov ax, 11931               
+    out 0x40, al                
+    mov al, ah                  
+    out 0x40, al               
+    mov sp, bp
+    pop bp
+ret
+
+global _init_pic
+_init_pic:
+    mov al, 0x11                ; load the ICW1 into al
+    out 0x20, al                ; send it to the port 0x20(master PIC)
+    out 0xa0, al                ; send it to the port 0xa0(slave PIC)
+    mov al, 0x20                ; the number of the 0 interrupt of the master PIC
+    out 0x20, al                ; send it to the master PIC. Now IRQ0 is interrupt 0x20 in the IVT table
+    mov al, 0x28                ; the number of the first interrupt of the slave PIC
+    out 0xa0, al                ; send it to the slave PIC. Now IRQ9 is interrupt 0x28 in the IVT table
+    mov al, 0x4                 ; 0x4 - IRQ2, used to call the slave PIC
+    out 0x21, al                ; send it to the master PIC
+    mov al, 0x2                 ; IRQ2 for the slacve PIC
+    out 0xa1, al                ; send it to the slave PIC
+    mov al, 1                   ; only the bit 0 is set. 
+    out 0x21, al                ; by sending it, tell the master PIC, that we are in a 8086 PC
+    out 0xa1, al                ; same, for the slave PIC
+    xor al, al
+    out 0x21, al
+    out 0xa1, al
+ret
+

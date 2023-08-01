@@ -1,0 +1,17 @@
+src/kernel/printf.c(7): Warning! W200: 'res' has been referenced but never assigned a value
+src/kernel/printf.c(110): Warning! E1179: Parameter 1, type qualifier mismatch
+src/kernel/printf.c(110): Note! I2003: source conversion type is 'char __far const *'
+src/kernel/printf.c(110): Note! I2004: target conversion type is 'char __far *'
+src/kernel/printf.c(110): Note! I2002: 'puts_f' defined in: src/kernel/printf.c(26)
+src/kernel/printf.c(115): Warning! E1179: Parameter 1, type qualifier mismatch
+src/kernel/printf.c(115): Note! I2003: source conversion type is 'char const *'
+src/kernel/printf.c(115): Note! I2004: target conversion type is 'char *'
+src/kernel/printf.c(115): Note! I2002: '_puts' defined in: src/kernel/printf.c(17)
+src/kernel/printf.c(238): Warning! E1179: Parameter 1, type qualifier mismatch
+src/kernel/printf.c(238): Note! I2003: source conversion type is 'char __far const *'
+src/kernel/printf.c(238): Note! I2004: target conversion type is 'char __far *'
+src/kernel/printf.c(238): Note! I2002: 'puts_f' defined in: src/kernel/printf.c(26)
+src/kernel/printf.c(243): Warning! E1179: Parameter 1, type qualifier mismatch
+src/kernel/printf.c(243): Note! I2003: source conversion type is 'char const *'
+src/kernel/printf.c(243): Note! I2004: target conversion type is 'char *'
+src/kernel/printf.c(243): Note! I2002: '_puts' defined in: src/kernel/printf.c(17)

@@ -231,7 +231,6 @@ void _cdecl fprintf(const char far *fmt, ...)
 						_putc((char)*argp);
 						argp++;
 						break;
-
 					case 's':
 						if (length == PRINTF_LENGTH_LONG ||
 							length == PRINTF_LENGTH_LONG_LONG)

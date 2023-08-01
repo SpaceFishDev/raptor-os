@@ -25,5 +25,9 @@ void print_blocks();
 void far* malloc(size_t size);
 void free(void far* ptr);
 char far* mkstr(char* str);
+void memset(char far* ptr, uint8_t value, size_t num);
+void memcpy(char far* ptr, char far* value, size_t num);
+void reverse(char far* ptr, size_t num);
+void realloc(char far** ptr, size_t original_size, size_t new_size);
 
 #endif

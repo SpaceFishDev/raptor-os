@@ -26,6 +26,8 @@ enum REGISTERS
 int get_register(short reg);
 
 void _cdecl outb(uint8_t byte, uint16_t port);
+void _cdecl init_pit();
 uint8_t _cdecl inb(uint16_t port);
+void _cdecl init_pic();
 
 #endif

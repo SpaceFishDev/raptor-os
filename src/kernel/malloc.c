@@ -103,3 +103,39 @@ void print_blocks()
 		printf("SIZE = %d\n\n", heap_blocks[i].size);
 	}
 }
+
+void memset(char far* ptr, uint8_t value, size_t num)
+{
+	for (size_t i = 0; i < num; ++i)
+	{
+		ptr[i] = value;
+	}
+}
+
+void reverse(char far* ptr, size_t num)
+{
+	int i = num;
+	for (int j = 0; j < num; ++j)
+	{
+		char temp = ptr[j];
+		ptr[j] = ptr[i];
+		ptr[i] = temp;
+		--i;
+	}
+}
+
+void realloc(char far** ptr, size_t original_size, size_t new_size)
+{
+	char far* ptr_new = malloc(new_size);
+	memcpy(ptr_new, *ptr, original_size);
+	free(*ptr);
+	*ptr = ptr_new;
+}
+
+void memcpy(char far* ptr, char far* ptr2, size_t num)
+{
+	for (int i = 0; i < num; ++i)
+	{
+		ptr[i] = ptr2[i];
+	}
+}

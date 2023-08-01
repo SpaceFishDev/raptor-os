@@ -13,7 +13,9 @@ void _cdecl set_safepoint();
 void _cdecl set_safe_point();
 void _cdecl jump(void* ptr);
 void div0_handler();
+void critical_error_handler();
 void _cdecl set_ivt(short interrupt, void* handler);
 void panic(char* msg);
+void install_interrupt(short interrupt, void* handler);
 
 #endif

@@ -43,6 +43,8 @@ main:
 
 	int 0x13
 
+
+
 	mov ax, 0x7e00
 	mov es, ax
 	mov ds, ax
@@ -51,6 +53,9 @@ main:
 
 	jmp 0x7e00:0x00
 
+	err:
+		push err_str
+		call puts
 
 jmp $
 
@@ -58,6 +63,9 @@ jmp $
 boot_disk:
 	db 0
 
+
+err_str:
+	db "Error Reading the kernel",0
 str: 
 	db "Booting Raptor Kernel!",0
 

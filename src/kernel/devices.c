@@ -26,6 +26,10 @@ void send_byte(int device, char b)
 			outb(24, b);
 		}
 		break;
+		case device_keyboard:
+		{
+		}
+		break;
 	}
 }
 void send_bytes(int device, char* b, int size)

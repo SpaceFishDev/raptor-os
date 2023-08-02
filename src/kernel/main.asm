@@ -212,3 +212,30 @@ _init_pic:
     out 0xa1, al
 ret
 
+global __U4D ; needed for watcom again...
+__U4D:
+    shl edx, 16         
+    mov dx, ax         
+    mov eax, edx      
+    xor edx, edx
+    shl ecx, 16       
+    mov cx, bx   
+    div ecx     
+    mov ebx, edx
+    mov ecx, edx
+    shr ecx, 16
+    mov edx, eax
+    shr edx, 16
+ret
+
+global __U4M
+__U4M: ; this is needed for WATCOM to function
+    shl edx, 16       
+    mov dx, ax       
+    mov eax, edx   
+    shl ecx, 16         
+    mov cx, bx          
+    mul ecx             
+    mov edx, eax      
+    shr edx, 16
+ret

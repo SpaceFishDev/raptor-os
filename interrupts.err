@@ -1,2 +1,2 @@
-src/kernel/printf.h(10): Warning! W140: Definition of macro 'bool' not identical to previous definition
-src/kernel/printf.h(10): Note! I2002: 'bool' defined in: src/kernel/interrupts.h(5)
+src/kernel/../stdlib/stdint.h(11): Warning! W140: Definition of macro 'bool' not identical to previous definition
+src/kernel/../stdlib/stdint.h(11): Note! I2002: 'bool' defined in: src/kernel/interrupts.h(5)

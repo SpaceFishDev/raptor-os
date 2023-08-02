@@ -29,5 +29,7 @@ void memset(char far* ptr, uint8_t value, size_t num);
 void memcpy(char far* ptr, char far* value, size_t num);
 void reverse(char far* ptr, size_t num);
 void realloc(char far** ptr, size_t original_size, size_t new_size);
+bool memcmp(char far* ptr, char far* data, size_t size);
+bool strcmp(char far* a, char far* b);
 
 #endif

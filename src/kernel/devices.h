@@ -7,6 +7,7 @@ enum DEVICES
 	device_telletype,
 	device_floppy_index,
 	device_floppy_enable,
+	device_keyboard,
 };
 
 void send_byte(int device, char b);

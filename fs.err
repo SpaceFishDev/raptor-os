@@ -1,2 +1,8 @@
 src/kernel/fs.c(14): Warning! W107: Missing return value for function 'LBA_TO_CHS'
-src/kernel/fs.c(89): Warning! W120: lvalue cast is not standard C
+src/kernel/fs.c(35): Warning! W303: Parameter 'used_bytes' has been defined, but not referenced
+src/kernel/fs.c(155): Warning! W112: Parameter 4: Pointer truncated
+src/kernel/fs.c(155): Note! I2003: source conversion type is 'unsigned long __far *'
+src/kernel/fs.c(155): Note! I2004: target conversion type is 'unsigned long *'
+src/kernel/fs.c(155): Note! I2002: 'parse_files' defined in: src/kernel/fs.c(34)
+src/kernel/fs.c(170): Warning! W107: Missing return value for function 'find_file'
+src/kernel/fs.c(255): Warning! W202: Symbol 'id' has been defined, but not referenced

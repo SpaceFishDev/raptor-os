@@ -8,7 +8,8 @@ size_t num_block;
 
 char far* mkstr(char* str)
 {
-	char far* new_str = malloc(strlen(str));
+	char far* new_str = malloc(strlen(str) + 1);
+	memset(new_str, 0, strlen(str) + 1);
 	int i = 0;
 	while (*str)
 	{
@@ -138,4 +139,30 @@ void memcpy(char far* ptr, char far* ptr2, size_t num)
 	{
 		ptr[i] = ptr2[i];
 	}
+}
+
+bool memcmp(char far* ptr, char far* data, size_t size)
+{
+	for (int i = 0; i < size; ++i)
+	{
+		if (ptr[i] != data[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool strcmp(char far* a, char far* b)
+{
+	while (*a)
+	{
+		if (*a != *b)
+		{
+			return false;
+		}
+		++a;
+		++b;
+	}
+	return true;
 }

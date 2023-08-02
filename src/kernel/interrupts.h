@@ -6,7 +6,6 @@
 #define true 1
 #define false 0
 
-#define TO_SAFETY jump(safe_point)
 bool panic_has_happened = false;
 void* safe_point = 0x00;
 void _cdecl set_safepoint();

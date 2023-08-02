@@ -4,6 +4,7 @@
 #include "printf.h"
 #include "sys.h"
 
+#define TO_SAFETY jump(safe_point)
 void _cdecl set_safe_point()
 {
 	_asm

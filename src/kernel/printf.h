@@ -5,10 +5,6 @@
 #include "sys.h"
 uint32_t strlen(char *str);
 
-#define true 1
-#define false 0
-#define bool char
-
 #define PRINTF_STATE_NORMAL 0
 #define PRINTF_STATE_LENGTH 1
 #define PRINTF_STATE_LENGTH_SHORT 2

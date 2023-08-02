@@ -14,18 +14,12 @@ void _cdecl main_(char boot_disk)
 	install_interrupt(0x24, critical_error_handler);
 	video_mode(0x13);
 	init_heap();
-	printf("Welcome to raptor-kernel!\n");
-	char far* buf = malloc(512);
-	memset((char far*)buf, 0, 1024);
-	((short far*)buf)[0] = 1;
-	*((size_t far*)(buf + 2)) = 2;
-	*(buf + 6) = 'a';
-	*(buf + 7) = 'b';
-	*(buf + 8) = 0;
-	*(buf + 9) = 'c';
-	*(buf + 10) = 'd';
-	write_sect(0x01, 0, 1, 0, 1, (char far*)buf);
-	disk_t far* disk;
-	disk = init_disk(0x01);
-	printf("NUM OF FILES=%d\n", disk->n_file);
+	printf("Welcome to raptor-os!\n");
+	disk_t far *disk = init_disk(0x01);
+	write_file(disk, mkstr("hi.txt"), mkstr("test!"), 6);
+	char far *buffer = malloc(7);
+	memset(buffer, 0, 7);
+	size_t len = read_file(disk, buffer, mkstr("hi.txt"));
+	remove_file(disk, mkstr("hi.txt"));
+	flush_disk(&disk);
 }

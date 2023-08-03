@@ -239,3 +239,22 @@ __U4M: ; this is needed for WATCOM to function
     mov edx, eax      
     shr edx, 16
 ret
+
+global _test_func
+_test_func:
+    mov ah, 0x02
+    mov dl, 'a'
+    int 21h
+ret
+
+extern _int21H
+global _int21_handler_stage0
+
+_int21_handler_stage0:
+    push ax
+    call _int21H 
+    mov al, 0x20
+    out 0x20, al
+    pop ax
+    iret
+

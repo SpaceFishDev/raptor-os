@@ -1,5 +1,7 @@
 #include "sys.h"
 
+#include "printf.h"
+
 void cli()
 {
 	_asm

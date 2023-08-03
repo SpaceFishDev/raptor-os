@@ -1,4 +1,5 @@
 src/kernel/interrupts.h(5): Warning! W140: Definition of macro 'bool' not identical to previous definition
 src/kernel/interrupts.h(5): Note! I2002: 'bool' defined in: src/kernel/../stdlib/stdint.h(11)
-src/kernel/main.c(22): Warning! W202: Symbol 'len' has been defined, but not referenced
+src/kernel/main.c(19): Warning! W131: No prototype found for function 'waitk'
+src/kernel/main.c(19): Warning! W202: Symbol 'c' has been defined, but not referenced
 src/kernel/main.c(11): Warning! W303: Parameter 'boot_disk' has been defined, but not referenced

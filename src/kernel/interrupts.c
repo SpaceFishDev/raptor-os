@@ -41,9 +41,9 @@ void install_interrupt(short int_, void* handler)
 	set_ivt(int_ * 4, handler);
 }
 
-void __interrupt __far int21H()
+void _cdecl int21H(uint16_t ax)
 {
-	uint8_t ah = get_register(AH);
+	uint8_t ah = ax >> 8;
 	switch (ah)
 	{
 		case 0x00:
@@ -68,10 +68,5 @@ void __interrupt __far int21H()
 		}
 		break;
 	}
-	_asm
-		{
-		iret
-		}
-	;
 }
 

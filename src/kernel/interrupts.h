@@ -3,6 +3,7 @@
 #define INTERRUPTS_H
 
 #define bool unsigned char
+
 #define true 1
 #define false 0
 
@@ -16,5 +17,5 @@ void critical_error_handler();
 void _cdecl set_ivt(short interrupt, void* handler);
 void panic(char* msg);
 void install_interrupt(short interrupt, void* handler);
-
+void _cdecl int21_handler_stage0();
 #endif

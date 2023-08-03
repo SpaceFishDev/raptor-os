@@ -43,6 +43,14 @@ bool getk(char *key)
 	return true;
 }
 
+char waitk()
+{
+	char c;
+	while (!getk(&c))
+		;
+	return c;
+}
+
 void update_keyboard()
 {
 	char c = inb(0x60);

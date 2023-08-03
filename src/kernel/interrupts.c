@@ -1,6 +1,7 @@
 #include "interrupts.h"
 
 #include "devices.h"
+#include "keyboard.h"
 #include "printf.h"
 #include "sys.h"
 
@@ -39,3 +40,38 @@ void install_interrupt(short int_, void* handler)
 {
 	set_ivt(int_ * 4, handler);
 }
+
+void __interrupt __far int21H()
+{
+	uint8_t ah = get_register(AH);
+	switch (ah)
+	{
+		case 0x00:
+		{
+			// exit!!!
+		}
+		break;
+		case 0x01:
+		{
+			char k = waitk();
+			_asm
+				{
+				mov al, [k]
+				}
+			;
+		}
+		break;
+		case 0x02:
+		{
+			uint8_t dl = (char)get_register(DX);
+			printf("%c", dl);
+		}
+		break;
+	}
+	_asm
+		{
+		iret
+		}
+	;
+}
+

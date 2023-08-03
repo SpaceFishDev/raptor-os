@@ -20,6 +20,6 @@ void _cdecl main_(char boot_disk)
 	char far *buffer = malloc(7);
 	memset(buffer, 0, 7);
 	size_t len = read_file(disk, buffer, mkstr("hi.txt"));
-	remove_file(disk, mkstr("hi.txt"));
+	// remove_file(disk, mkstr("hi.txt"));
 	flush_disk(&disk);
 }

@@ -10,6 +10,7 @@ void init_keyboard();
 bool getc(char key);
 bool keyboard_state[128];
 char getk();
+char waitk();
 
 enum special_keys
 {

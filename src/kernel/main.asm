@@ -255,6 +255,6 @@ _int21_handler_stage0:
     call _int21H 
     mov al, 0x20
     out 0x20, al
-    pop ax
+    add sp, 2
     iret
 

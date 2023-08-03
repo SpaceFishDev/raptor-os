@@ -56,7 +56,7 @@ void _cdecl int21H(uint16_t ax)
 			char k = waitk();
 			_asm
 				{
-				mov al, [k]
+					mov al, [k]
 				}
 			;
 		}

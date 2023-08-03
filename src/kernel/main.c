@@ -16,12 +16,12 @@ void _cdecl main_(char boot_disk)
 	video_mode(0x13);
 	init_heap();
 	printf("Welcome to raptor-os!\n");
-	char c = waitk();
 	_asm
 		{
-			mov ah, 0x01
+			mov dl, 'a' 
+			mov ah, 0x02
 			int 0x21
-			mov dl, al
+			mov dl, 'b' 
 			mov ah, 0x02
 			int 0x21
 		}

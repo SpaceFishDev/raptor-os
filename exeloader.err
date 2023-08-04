@@ -1,0 +1,6 @@
+src/kernel/exeloader.c(8): Warning! W131: No prototype found for function 'malloc'
+src/kernel/exeloader.c(10): Warning! W102: Type mismatch (warning)
+src/kernel/exeloader.c(10): Note! I2003: source conversion type is 'int'
+src/kernel/exeloader.c(10): Note! I2004: target conversion type is 'char __far *'
+src/kernel/exeloader.c(8): Warning! W308: The function 'malloc' without prototyped parameters called
+src/kernel/exeloader.c(8): Note! I2002: 'malloc' defined in: src/kernel/exeloader.c(8)

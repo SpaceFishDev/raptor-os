@@ -1,8 +1,19 @@
 src/kernel/../stdlib/stdint.h(11): Warning! W140: Definition of macro 'bool' not identical to previous definition
 src/kernel/../stdlib/stdint.h(11): Note! I2002: 'bool' defined in: src/kernel/interrupts.h(5)
-src/kernel/interrupts.c(75): Warning! W200: 'str' has been referenced but never assigned a value
-src/kernel/interrupts.c(77): Warning! W102: Type mismatch (warning)
-src/kernel/interrupts.c(77): Note! I2003: source conversion type is 'int'
-src/kernel/interrupts.c(77): Note! I2004: target conversion type is 'char __far *'
-src/kernel/interrupts.c(77): Warning! W202: Symbol 'str_ptr' has been defined, but not referenced
-src/kernel/interrupts.c(82): Warning! W107: Missing return value for function 'int21H'
+src/kernel/interrupts.c(82): Warning! W200: 'str' has been referenced but never assigned a value
+src/kernel/interrupts.c(84): Warning! W102: Type mismatch (warning)
+src/kernel/interrupts.c(84): Note! I2003: source conversion type is 'int'
+src/kernel/interrupts.c(84): Note! I2004: target conversion type is 'char __far *'
+src/kernel/interrupts.c(84): Warning! W202: Symbol 'str_ptr' has been defined, but not referenced
+src/kernel/interrupts.c(105): Warning! W131: No prototype found for function 'BF_Interpreter'
+src/kernel/interrupts.c(113): Warning! W107: Missing return value for function 'int21H'
+src/kernel/interrupts.c(95): Warning! W308: The function 'getk' without prototyped parameters called
+src/kernel/interrupts.c(95): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)
+src/kernel/interrupts.c(107): Warning! W308: The function 'waitk' without prototyped parameters called
+src/kernel/interrupts.c(107): Note! I2002: 'waitk' defined in: src/kernel/keyboard.h(13)
+src/kernel/interrupts.c(196): Warning! W308: The function 'getk' without prototyped parameters called
+src/kernel/interrupts.c(196): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)
+src/kernel/interrupts.c(208): Warning! W308: The function 'getk' without prototyped parameters called
+src/kernel/interrupts.c(208): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)
+src/kernel/interrupts.c(333): Warning! W308: The function 'getk' without prototyped parameters called
+src/kernel/interrupts.c(333): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)

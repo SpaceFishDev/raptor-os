@@ -3,6 +3,8 @@
 #define EXE_LOADER_H
 
 #include "../stdlib/stdint.h"
+#include "fs.h"
+#include "sys.h"
 
 typedef struct
 {

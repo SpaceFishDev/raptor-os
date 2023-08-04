@@ -16,8 +16,10 @@ all:
 	$(CC16) $(CFLAGS16) -fobuild/kernel/interrupts_c.o src/kernel/interrupts.c
 	$(CC16) $(CFLAGS16) -fobuild/kernel/printf.o src/kernel/printf.c
 	$(CC16) $(CFLAGS16) -fobuild/kernel/fs.o src/kernel/fs.c
+	$(CC16) $(CFLAGS16) -fobuild/kernel/exeloader.o src/kernel/exeloader.c
 	$(CC16) $(CFLAGS16) -fobuild/kernel/keyboard.o src/kernel/keyboard.c
-	$(LD16) NAME build/kernel/kernel.bin FILE \{build/kernel/keyboard.o build/kernel/fs.o build/kernel/printf.o build/kernel/malloc.o build/kernel/interrupts_c.o build/kernel/sys.o build/kernel/interrupts.o build/kernel/devices.o build/kernel/io_c.o build/kernel/main_asm.o build/kernel/extend.o build/kernel/main.o build/kernel/io.o \} OPTION MAP=build/kernel.map @linker.lnk
+	$(CC16) $(CFLAGS16) -fobuild/kernel/exeloader.o src/kernel/exeloader.c
+	$(LD16) NAME build/kernel/kernel.bin FILE \{build/kernel/exeloader.o build/kernel/keyboard.o build/kernel/fs.o build/kernel/printf.o build/kernel/malloc.o build/kernel/interrupts_c.o build/kernel/sys.o build/kernel/interrupts.o build/kernel/devices.o build/kernel/io_c.o build/kernel/main_asm.o build/kernel/extend.o build/kernel/main.o build/kernel/io.o \} OPTION MAP=build/kernel.map @linker.lnk
 	cat build/boot/boot.bin build/kernel/kernel.bin > build/kernel.img 
 	truncate -s 1M build/kernel.img
 	make run

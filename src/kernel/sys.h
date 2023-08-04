@@ -34,5 +34,6 @@ void _cdecl init_pit();
 uint8_t _cdecl inb(uint16_t port);
 void _cdecl init_pic();
 void _cdecl test_func();
+void _cdecl call(void *ptr);
 
 #endif

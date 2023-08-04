@@ -1,3 +1,7 @@
 src/kernel/interrupts.h(5): Warning! W140: Definition of macro 'bool' not identical to previous definition
 src/kernel/interrupts.h(5): Note! I2002: 'bool' defined in: src/kernel/../stdlib/stdint.h(11)
-src/kernel/main.c(11): Warning! W303: Parameter 'boot_disk' has been defined, but not referenced
+src/kernel/main.c(33): Warning! W100: Parameter 1 contains inconsistent levels of indirection
+src/kernel/main.c(33): Note! I2003: source conversion type is 'disk_t __far *'
+src/kernel/main.c(33): Note! I2004: target conversion type is 'disk_t __far **'
+src/kernel/main.c(33): Note! I2002: 'flush_disk' defined in: src/kernel/fs.h(45)
+src/kernel/main.c(13): Warning! W303: Parameter 'boot_disk' has been defined, but not referenced

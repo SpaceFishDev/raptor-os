@@ -261,5 +261,18 @@ _int21_handler_stage0:
     add sp, 2
     iret
 
+global _call
+_call:
+	push bp
+	mov bp,sp
+	mov bx, [bp+4]
+    mov ax, 0x7e00
+    mov es, ax
+    call bx
+    mov sp, bp
+    pop bp
+ret
+
 _str:
     db `test: %c\n`,0
+

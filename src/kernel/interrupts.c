@@ -41,7 +41,7 @@ void install_interrupt(short int_, void* handler)
 	set_ivt(int_ * 4, handler);
 }
 
-void _cdecl int21H(uint16_t ax)
+char _cdecl int21H(uint16_t ax)
 {
 	uint8_t ah = ax >> 8;
 	switch (ah)
@@ -54,11 +54,8 @@ void _cdecl int21H(uint16_t ax)
 		case 0x01:
 		{
 			char k = waitk();
-			_asm
-				{
-					mov al, [k]
-				}
-			;
+			printf("%c", k);
+			return k;
 		}
 		break;
 		case 0x02:
@@ -67,6 +64,15 @@ void _cdecl int21H(uint16_t ax)
 			printf("%c", dl);
 		}
 		break;
+		case 0x09:
+		{
+			uint16_t ds = get_register(DS);
+			uint16_t bx = get_register(BX);
+			int str = (str | ds) >> 8;
+			str = (str | bx);
+			char far* str_ptr = str;
+			printf("%d\n", (int)str);
+		}
+		break;
 	}
 }
-

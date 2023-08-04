@@ -249,12 +249,17 @@ ret
 
 extern _int21H
 global _int21_handler_stage0
+extern _printf
 
 _int21_handler_stage0:
     push ax
     call _int21H 
+    push ax
     mov al, 0x20
     out 0x20, al
+    pop ax
     add sp, 2
     iret
 
+_str:
+    db `test: %c\n`,0

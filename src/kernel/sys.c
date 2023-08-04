@@ -84,6 +84,17 @@ int get_register(short reg)
 			return r2;
 		}
 		break;
+		case DS:
+		{
+			_asm
+			{
+				push ax
+				mov ax, ds
+				mov [reg], ax
+				pop ax
+			}
+		}
+		break;
 	}
 	return reg;
 }

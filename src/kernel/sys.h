@@ -22,6 +22,10 @@ enum REGISTERS
 	BX,
 	AH,
 	CH,
+	CS,
+	DS,
+	ES,
+	SS,
 };
 int get_register(short reg);
 

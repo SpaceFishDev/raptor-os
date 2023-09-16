@@ -1,5 +1,5 @@
-src/kernel/keyboard.c(33): Warning! W400: Array subscript is of type plain char
-src/kernel/keyboard.c(59): Warning! W400: Array subscript is of type plain char
-src/kernel/keyboard.c(62): Warning! W400: Array subscript is of type plain char
-src/kernel/keyboard.c(62): Warning! W400: Array subscript is of type plain char
-src/kernel/keyboard.c(73): Warning! W400: Array subscript is of type plain char
+src/kernel/keyboard.c(97): Warning! W400: Array subscript is of type plain char
+src/kernel/keyboard.c(186): Warning! W400: Array subscript is of type plain char
+src/kernel/keyboard.c(189): Warning! W400: Array subscript is of type plain char
+src/kernel/keyboard.c(189): Warning! W400: Array subscript is of type plain char
+src/kernel/keyboard.c(200): Warning! W400: Array subscript is of type plain char

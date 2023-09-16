@@ -11,9 +11,9 @@ src/kernel/interrupts.c(95): Warning! W308: The function 'getk' without prototyp
 src/kernel/interrupts.c(95): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)
 src/kernel/interrupts.c(107): Warning! W308: The function 'waitk' without prototyped parameters called
 src/kernel/interrupts.c(107): Note! I2002: 'waitk' defined in: src/kernel/keyboard.h(13)
-src/kernel/interrupts.c(196): Warning! W308: The function 'getk' without prototyped parameters called
-src/kernel/interrupts.c(196): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)
-src/kernel/interrupts.c(208): Warning! W308: The function 'getk' without prototyped parameters called
-src/kernel/interrupts.c(208): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)
-src/kernel/interrupts.c(333): Warning! W308: The function 'getk' without prototyped parameters called
-src/kernel/interrupts.c(333): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)
+src/kernel/interrupts.c(201): Warning! W308: The function 'getk' without prototyped parameters called
+src/kernel/interrupts.c(201): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)
+src/kernel/interrupts.c(213): Warning! W308: The function 'getk' without prototyped parameters called
+src/kernel/interrupts.c(213): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)
+src/kernel/interrupts.c(338): Warning! W308: The function 'getk' without prototyped parameters called
+src/kernel/interrupts.c(338): Note! I2002: 'getk' defined in: src/kernel/keyboard.h(12)

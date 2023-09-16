@@ -48,63 +48,63 @@ char _cdecl int21H(uint16_t ax)
 	uint8_t ah = ax >> 8;
 	switch (ah)
 	{
-		case 0x00:
+	case 0x00:
+	{
+		// exit!!!
+	}
+	break;
+	case 0x01:
+	{
+		char k = waitk();
+		printf("%c", k);
+		return k;
+	}
+	break;
+	case 0x02:
+	{
+		uint8_t dl = (char)get_register(DX);
+		printf("%c", dl);
+	}
+	break;
+	case 0x08:
+	{
+		char k = waitk();
+		return k;
+	}
+	case 0x09:
+	{
+		uint16_t ds = get_register(DS);
+		uint16_t bx = get_register(BX);
+		int str = (str | ds) >> 8;
+		str = (str | bx);
+		char far *str_ptr = str;
+		printf("%d\n", (int)str);
+	}
+	break;
+	case 0x25: // CUSTOM!!! (check if key is currently pressed)
+	{
+		// DL = KEY
+		// RETURNS IF THE KEY IS PRESSED
+		// RETURN IS IN AL.
+		uint8_t dl = get_register(DX);
+		uint8_t buf;
+		bool p = getk(&buf);
+		if (dl == buf)
 		{
-			// exit!!!
+			return p;
 		}
-		break;
-		case 0x01:
-		{
-			char k = waitk();
-			printf("%c", k);
-			return k;
-		}
-		break;
-		case 0x02:
-		{
-			uint8_t dl = (char)get_register(DX);
-			printf("%c", dl);
-		}
-		break;
-		case 0x08:
-		{
-			char k = waitk();
-			return k;
-		}
-		case 0x09:
-		{
-			uint16_t ds = get_register(DS);
-			uint16_t bx = get_register(BX);
-			int str = (str | ds) >> 8;
-			str = (str | bx);
-			char far *str_ptr = str;
-			printf("%d\n", (int)str);
-		}
-		break;
-		case 0x25:	// CUSTOM!!! (check if key is currently pressed)
-		{
-			// DL = KEY
-			// RETURNS IF THE KEY IS PRESSED
-			// RETURN IS IN AL.
-			uint8_t dl = get_register(DX);
-			uint8_t buf;
-			bool p = getk(&buf);
-			if (dl == buf)
-			{
-				return p;
-			}
-			return false;  // p saved in al
-		}
-		case 0xBF:	// brainfuck interpreter!!! it takes in input until '$' is
-					// pressed. (ALSO CUSTOM!)
-		{
-			BF_Interpreter();
-			printf("\n--------------------\nPRESS A KEY TO EXIT.");
-			char a;
-			waitk(&a);
-			video_mode(0x13);
-			printf("WELCOME TO RAPTOR-OS!");
-		}
+		return false; // p saved in al
+	}
+	case 0xBF: // brainfuck interpreter!!! it takes in input until '$' is
+			   // pressed. (ALSO CUSTOM!)
+	{
+		BF_Interpreter();
+		printf("\n--------------------\nPRESS A KEY TO EXIT.");
+		char a;
+		waitk(&a);
+		video_mode(0x13);
+		printf("WELCOME TO RAPTOR-OS!");
+	}
 	}
 }
 
@@ -119,54 +119,59 @@ void interpret_bf(char far *buffer)
 	memset(mem, 0, 1000);
 	while (buffer[pos])
 	{
+		update_keyboard();
+		if (getc(LEFT_CNTRL) && getc('c'))
+		{
+			break;
+		}
 		switch (buffer[pos])
 		{
-			case '+':
+		case '+':
+		{
+			mem[mempos]++;
+		}
+		break;
+		case '-':
+		{
+			mem[mempos]--;
+		}
+		break;
+		case '.':
+		{
+			printf("%c", mem[mempos]);
+		}
+		break;
+		case ',':
+		{
+			char k = waitk();
+			mem[mempos] = k;
+		}
+		break;
+		case '>':
+		{
+			++mempos;
+		}
+		break;
+		case '<':
+		{
+			--mempos;
+		}
+		break;
+		case '[':
+		{
+			stack_ptr++;
+			stack[stack_ptr] = pos;
+		}
+		break;
+		case ']':
+		{
+			if (mem[mempos] != 0)
 			{
-				mem[mempos]++;
+				pos = stack[stack_ptr] - 1;
+				--stack_ptr;
 			}
-			break;
-			case '-':
-			{
-				mem[mempos]--;
-			}
-			break;
-			case '.':
-			{
-				printf("%c", mem[mempos]);
-			}
-			break;
-			case ',':
-			{
-				char k = waitk();
-				mem[mempos] = k;
-			}
-			break;
-			case '>':
-			{
-				++mempos;
-			}
-			break;
-			case '<':
-			{
-				--mempos;
-			}
-			break;
-			case '[':
-			{
-				stack_ptr++;
-				stack[stack_ptr] = pos;
-			}
-			break;
-			case ']':
-			{
-				if (mem[mempos] != 0)
-				{
-					pos = stack[stack_ptr] - 1;
-					--stack_ptr;
-				}
-			}
-			break;
+		}
+		break;
 		}
 		++pos;
 	}
@@ -178,7 +183,7 @@ void interpret_bf(char far *buffer)
 void BF_Interpreter()
 {
 	video_mode(0x13);
-	char far *buffer = malloc(1024);  // 1KB is MORE THAN ENOUGH!
+	char far *buffer = malloc(1024); // 1KB is MORE THAN ENOUGH!
 	memset(buffer, 0, 1024);
 	int buffer_idx = 0;
 	char row = 1;
@@ -214,40 +219,31 @@ void BF_Interpreter()
 			}
 			switch (key)
 			{
-				case '\n':
+			case '\n':
+			{
+				column = 0;
+				row++;
+			}
+			break;
+			case LEFT_SHIFT:
+			{
+				continue;
+			}
+			case BACKSPACE:
+			{
+				--buffer_idx;
+				if (column == 0)
 				{
-					column = 0;
-					row++;
+					row--;
+					column = 40;
 				}
-				break;
-				case LEFT_SHIFT:
+				else
 				{
-					continue;
+					--column;
 				}
-				case BACKSPACE:
-				{
-					--buffer_idx;
-					if (column == 0)
-					{
-						row--;
-						column = 40;
-					}
-					else
-					{
-						--column;
-					}
-					buffer[buffer_idx] = ' ';
+				buffer[buffer_idx] = ' ';
 
-					_asm
-						{
-								mov dl, [column]
-								mov dh, [row]
-								mov ah, 0x02
-								mov bh, 0
-								int 10h
-						}
-					printf("%c", ' ');
-					_asm
+				_asm
 					{
 								mov dl, [column]
 								mov dh, [row]
@@ -255,63 +251,72 @@ void BF_Interpreter()
 								mov bh, 0
 								int 10h
 					}
+				printf("%c", ' ');
+				_asm
+				{
+								mov dl, [column]
+								mov dh, [row]
+								mov ah, 0x02
+								mov bh, 0
+								int 10h
 				}
-				break;
-				case '.':
+			}
+			break;
+			case '.':
+			{
+				update_keyboard();
+				if (keyboard_state[LEFT_SHIFT])
+				{
+					key = '>';
+				}
+				buffer[buffer_idx++] = key;
+				printf("%c", key);
+				++column;
+				while (keyboard_state['.'] && keyboard_state[LEFT_SHIFT])
 				{
 					update_keyboard();
-					if (keyboard_state[LEFT_SHIFT])
-					{
-						key = '>';
-					}
-					buffer[buffer_idx++] = key;
-					printf("%c", key);
-					++column;
-					while (keyboard_state['.'] && keyboard_state[LEFT_SHIFT])
-					{
-						update_keyboard();
-					}
 				}
-				break;
-				case ',':
+			}
+			break;
+			case ',':
+			{
+				update_keyboard();
+				if (keyboard_state[LEFT_SHIFT])
+				{
+					key = '<';
+				}
+				buffer[buffer_idx++] = key;
+				printf("%c", key);
+				++column;
+				while (keyboard_state[','] && keyboard_state[LEFT_SHIFT])
 				{
 					update_keyboard();
-					if (keyboard_state[LEFT_SHIFT])
-					{
-						key = '<';
-					}
-					buffer[buffer_idx++] = key;
-					printf("%c", key);
-					++column;
-					while (keyboard_state[','] && keyboard_state[LEFT_SHIFT])
-					{
-						update_keyboard();
-					}
 				}
-				break;
-				case '=':
+			}
+			break;
+			case '=':
+			{
+				update_keyboard();
+				if (keyboard_state[LEFT_SHIFT])
+				{
+					key = '+';
+				}
+				buffer[buffer_idx++] = key;
+				printf("%c", key);
+				++column;
+				while (keyboard_state['='] && keyboard_state[LEFT_SHIFT])
 				{
 					update_keyboard();
-					if (keyboard_state[LEFT_SHIFT])
-					{
-						key = '+';
-					}
-					buffer[buffer_idx++] = key;
-					printf("%c", key);
-					++column;
-					while (keyboard_state['='] && keyboard_state[LEFT_SHIFT])
-					{
-						update_keyboard();
-					}
 				}
-				break;
-				default:
-				{
-					buffer[buffer_idx++] = key;
-					printf("%c", key);
-					++column;
-				}
-				break;
+			}
+			break;
+			default:
+			{
+				buffer[buffer_idx++] = key;
+				printf("%c", key);
+				++column;
+			}
+			break;
 			}
 			char k = key;
 			while (key_press && k == key)

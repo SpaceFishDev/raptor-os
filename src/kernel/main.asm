@@ -265,10 +265,15 @@ global _call
 _call:
 	push bp
 	mov bp,sp
-	mov bx, [bp+4]
-    mov ax, 0x7e00
+    push bx
+	
+    mov ax, 0
     mov es, ax
+
+    mov bx, [bp+4]
     call bx
+    
+    pop bx
     mov sp, bp
     pop bp
 ret

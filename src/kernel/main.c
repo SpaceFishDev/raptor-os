@@ -19,10 +19,11 @@ void _cdecl main_(char boot_disk)
 	init_heap();
 	printf("Welcome to raptor-os!\n");
 	disk_t far *disk = init_disk(0x01);
-	init_keyboard();
-	_asm
-	{
-		mov ah, 0xBF
-		int 0x21
-	}
+	char far *buffer = malloc(32);
+	buffer[0] = 0xb4;
+	buffer[1] = 0xBF;
+	buffer[2] = 0xcd;
+	buffer[3] = 0x21;
+	write_file(disk, "main.o", buffer, 4);
+	load_exe_from_file(disk, "main.o");
 }

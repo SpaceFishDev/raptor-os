@@ -1,4 +1,3 @@
 src/kernel/interrupts.h(5): Warning! W140: Definition of macro 'bool' not identical to previous definition
 src/kernel/interrupts.h(5): Note! I2002: 'bool' defined in: src/kernel/../stdlib/stdint.h(11)
-src/kernel/main.c(21): Warning! W202: Symbol 'disk' has been defined, but not referenced
 src/kernel/main.c(13): Warning! W303: Parameter 'boot_disk' has been defined, but not referenced

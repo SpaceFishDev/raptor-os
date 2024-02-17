@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "*.tcc": "c",
+        "functional": "c",
+        "type_traits": "c",
+        "compare": "c",
+        "fstream": "c",
+        "istream": "c",
+        "ostream": "c",
+        "streambuf": "c",
+        "optional": "c",
+        "sys.h": "c",
+        "malloc.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "keyboard.h": "c",
+        "printf.h": "c",
+        "sstream": "c"
+    }
+}

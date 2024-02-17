@@ -26,4 +26,3 @@ void _cdecl printf(const char *fmt, ...);
 void _cdecl fprintf(const char far *fmt, ...);
 
 #endif
-
